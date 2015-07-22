@@ -1,0 +1,17 @@
+{
+  "name": "todoapp",
+  "version": "0.1.0",
+  "description": "app para gestionar listas de compra",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "@findemor",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.13.2",
+    "express": "^4.13.1",
+    "mongodb": "^2.0.39",
+    "morgan": "^1.6.1"
+  }
+}
