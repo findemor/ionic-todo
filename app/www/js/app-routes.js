@@ -8,25 +8,25 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
     .state('login', {
       url: '/login',
-      templateUrl: '/templates/login.html',
+      templateUrl: 'templates/login.html',
       controller: 'LoginCtrl'
     })
 
     .state('signup', {
       url: '/signup',
-      templateUrl: '/templates/signup.html',
+      templateUrl: 'templates/signup.html',
       controller: 'SignupCtrl'
     })
 
     .state('home', {
       url: '/home',
-      templateUrl: '/templates/home.html',
+      templateUrl: 'templates/home.html',
       controller: 'HomeCtrl'
     })
 
     .state('new', {
       url: '/new',
-      templateUrl: '/templates/new.html',
+      templateUrl: 'templates/new.html',
       controller: 'NewTodoCtrl'
     })
     ;

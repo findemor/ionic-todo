@@ -4,7 +4,6 @@ app.controller('HomeCtrl',
 
   $scope.todos = [];
 
-
   $rootScope.$on('load-todos', function(event) {
     $rootScope.showLoading('Fetching Todos..');
     var user = sf.getSession();
