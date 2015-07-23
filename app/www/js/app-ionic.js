@@ -5,9 +5,9 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('app', ['ionic'])
+var app = angular.module('app', ['ionic']);
 
-.run(function($ionicPlatform) {
+app.run(function($ionicPlatform, $rootScope, $ionicLoading, $location, $timeout, SessionFactory) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -19,40 +19,33 @@ angular.module('app', ['ionic'])
       StatusBar.styleDefault();
     }
   });
-})
-
-.config(function($stateProvider, $urlRouterProvider) {
-
-  // Ionic uses AngularUI Router which uses the concept of states
-  // Learn more here: https://github.com/angular-ui/ui-router
-  // Set up the various states which the app can be in.
-  // Each state's controller can be found in controllers.js
-  $stateProvider
-
-    .state('page1', {
-      url: '/login',
-      templateUrl: 'page1.html'
-    })
-
-    .state('page4', {
-      url: '/signup',
-      templateUrl: 'page4.html'
-    })
-
-    .state('page5', {
-      url: '/home',
-      templateUrl: 'page5.html'
-    })
-
-    .state('modal2', {
-      url: '/modal',
-      templateUrl: 'modal2.html'
-    })
-    ;
-
-  // if none of the above states are matched, use this as the fallback
-
-  $urlRouterProvider.otherwise('/login');
 
 
+  $rootScope.authktd = false;
+
+  $rootScope.showLoading = function(msg) {
+    $ionicLoading.show({
+      template: msg || 'Loading',
+      animation: 'fade-in',
+      showBackdrop: true,
+      maxWidth: 200,
+      showDelay: 0
+    });
+  }
+
+  $rootScope.hideLoading = function() {
+    $ionicLoading.hide();
+  };
+
+  $rootScope.toast = function(msg) {
+    $rootScope.showLoading(msg);
+    $timeout(function() {
+      $rootScope.hideLoading();
+    }, 2999);
+  };
+
+  $rootScope.logout = function() {
+    SessionFactory.deleteSession();
+    $location.path('/login');
+  }
 });

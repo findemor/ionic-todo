@@ -20,6 +20,13 @@
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
     <script src="js/app-ionic.js"></script>
+    <script src="js/app-routes.js"></script>
+    <script src="js/factories/api.js"></script>
+    <script src="js/factories/session.js"></script>
+    <script src="js/controllers/home.js"></script>
+    <script src="js/controllers/login.js"></script>
+    <script src="js/controllers/signup.js"></script>
+    <script src="js/controllers/new.js"></script>
   </head>
   <body ng-app="app" animation="slide-left-right-ios7">
   <div>
@@ -30,100 +37,6 @@
         <ion-nav-view></ion-nav-view>
     </div>
 </div>
-
-
-    <script id="page1.html" type="text/ng-template">
-    <ion-view title="Login">
-        <ion-content padding="true" class="has-header">
-            <form>
-                <ion-list>
-                    <label class="item item-input">
-                        <span class="input-label">Username</span>
-                        <input type="text" placeholder="">
-                    </label>
-                    <label class="item item-input">
-                        <span class="input-label">Password</span>
-                        <input type="password" placeholder="">
-                    </label>
-                </ion-list>
-                <div class="spacer" style="height: 40px;"></div>
-                <button class="button button-stable button-block ">Log in</button>
-                <a href="#/signup" class="button button-positive button-clear button-block ">Or create an account</a>
-            </form>
-        </ion-content>
-    </ion-view>
-    </script>
-
-
-    <script id="page4.html" type="text/ng-template">
-    <ion-view title="Signup">
-        <ion-content padding="true" scroll="false" class="has-header">
-            <form>
-                <ion-list>
-                    <label class="item item-input">
-                        <span class="input-label">Name</span>
-                        <input type="text" placeholder="">
-                    </label>
-                    <label class="item item-input">
-                        <span class="input-label">Username</span>
-                        <input type="text" placeholder="">
-                    </label>
-                    <label class="item item-input">
-                        <span class="input-label">Password</span>
-                        <input type="text" placeholder="">
-                    </label>
-                </ion-list>
-                <button class="button button-stable button-block ">Sign up</button>
-            </form>
-            <a href="#/login" class="button  button-outline button-block ">or LogIn</a>
-        </ion-content>
-    </ion-view>
-    </script>
-
-
-    <script id="page5.html" type="text/ng-template">
-    <ion-view title="Home">
-        <ion-content padding="true" class="has-header">
-            <button class="button button-positive button-block ">New item</button>
-            <ion-list>
-                <ion-item>Item 1</ion-item>
-                <ion-item>Item 2</ion-item>
-                <ion-item>Item 3</ion-item>
-            </ion-list>
-        </ion-content>
-    </ion-view>
-    </script>
-
-
-    <script id="modal2.html" type="text/ng-template">
-    <div class="modal">
-        <ion-header-bar class="bar-stable">
-            <h1 class="title">Modal</h1>
-            <div class="buttons">
-                <button class="button button-stable button-clear ">Close</button>
-            </div>
-        </ion-header-bar>
-        <ion-content padding="true" scroll="false" class="has-header">
-            <form>
-                <label class="item item-input" name="itemName">
-                    <span class="input-label">itemName</span>
-                    <input type="text" placeholder="">
-                </label>
-                <div class="spacer" style="height: 100px;"></div>
-                <label class="item item-select" name="category">
-                    <span class="input-label">category</span>
-                    <select></select>
-                </label>
-                <label class="item item-input" name="categoryNew">
-                    <span class="input-label">categoryNew</span>
-                    <input type="text" placeholder="">
-                </label>
-                <button class="button button-positive button-block ">Save</button>
-            </form>
-        </ion-content>
-    </div>
-    </script>
-
 
   </body>
 </html>
