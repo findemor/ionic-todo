@@ -5,6 +5,22 @@ app.controller('NewTodoCtrl', ['$rootScope', '$scope', 'SessionFactory', 'API', 
     category: ''
   };
 
+  $scope.categories = [];
+
+
+  $scope.$on('modal.shown',function(){
+      var user = sf.getSession();
+
+      api.getCategories(user._id)
+      .success(function(data) {
+        $scope.categories = data.data;
+        $scope.todo.category = data.data[0];
+      })
+      .error(function(data) {
+        $rootScope.toast('Categories load failed');
+      });
+  });
+
   $scope.create = function() {
     var user = sf.getSession();
 
@@ -12,8 +28,15 @@ app.controller('NewTodoCtrl', ['$rootScope', '$scope', 'SessionFactory', 'API', 
     user._id,
     {
       name: $scope.todo.name,
-      category: $scope.todo.category,
+      category: $scope.todo.category._id,
+      categoryNew: $scope.todo.categoryNew
     }).success(function(data) {
+
+      $scope.todo = {
+        name: '',
+        category: ''
+      };
+
       $rootScope.hideLoading();
       $scope.modal.hide();
       $rootScope.$broadcast('load-todos');

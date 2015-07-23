@@ -27,6 +27,9 @@ var postItem = function postItem (req, res) {
     return;
   }
 
+  if (todo.categoryNew)
+    todo.category = todo.categoryNew;
+
   var item = {
     timestamp : new Date().toISOString(),
     userId : _id,
@@ -37,6 +40,22 @@ var postItem = function postItem (req, res) {
 
   // Save Todo
   db.postItem(item, function(err, item) {
+
+    //creamos o actualizamos la categoria
+    if (todo.categoryNew) {
+        var cat = {
+          timestamp : new Date().toISOString(),
+          lastUsage : new Date().toISOString(),
+          userId : _id,
+          _id : todo.categoryNew,
+          times : 1
+        }
+      db.postCategory(cat);
+    } else if (todo.category) {
+      db.updateCategory(_id, todo.category);
+    }
+
+
     if (err) {
       r._401(res); // send a 401 Error
       return;

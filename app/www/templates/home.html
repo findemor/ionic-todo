@@ -2,7 +2,10 @@
     <ion-content padding="true" class="has-header">
         <button class="button button-positive button-block " ng-click="createNew()">New item</button>
         <ion-list>
-          <ion-item ng-repeat="t in todos">{{t.name}}</ion-item>
+          <ion-item ng-repeat="t in todos">
+            <h2>{{t.name}}</h2>
+            <p>{{t.category}}</p>
+          </ion-item>
           <ion-item ng-show="todos.length == 0">No Todos Yet</ion-item>
         </ion-list>
     </ion-content>

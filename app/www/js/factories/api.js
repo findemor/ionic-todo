@@ -14,6 +14,9 @@ app.factory('API', ['$http', function($http) {
     },
     saveTodo: function(userid, todo) {
       return $http.post(_base + '/api/todos/' + userid, todo);
+    },
+    getCategories: function(userid) {
+      return $http.get(_base + '/api/categories/' + userid);
     }
 
   };

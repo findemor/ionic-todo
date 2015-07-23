@@ -16,6 +16,8 @@ app.controller('HomeCtrl', ['$rootScope', '$scope', 'SessionFactory', 'API', '$i
     });
   });
 
+
+
   $rootScope.$broadcast('load-todos');
 
   $rootScope.createNew = function() {

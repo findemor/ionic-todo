@@ -14,8 +14,7 @@
             <div class="spacer" style="height: 100px;"></div>
             <label class="item item-select" name="category">
                 <span class="input-label">category</span>
-                <select ng-model="todo.category">
-                </select>
+                <select ng-model="todo.category" ng-options="c._id for c in categories"></select>
             </label>
             <label class="item item-input" name="categoryNew">
                 <span class="input-label">categoryNew</span>

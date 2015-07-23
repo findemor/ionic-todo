@@ -64,11 +64,65 @@ var postItem = function postItem(item, callback)
 };
 
 
+var updateCategory = function updateCategory(userId, categoryId, callback) {
+  console.log('updating');
+  MongoClient.connect(config.db, function(err, db) {
+      if (err) throw err;
+
+      var collection = db.collection('categories');
+
+      collection.update(
+          { _id : categoryId, userId : userId }
+          , { '$set': { lastUsage : new Date().toISOString() }, '$inc': { times : 1 } }
+          , {upsert:true}
+          , function(err, col){
+            console.log(err);
+              if (callback) callback(err, item);
+              db.close();
+          });
+  });
+};
+
+var postCategory = function postCategory(item, callback)
+{
+    MongoClient.connect(config.db, function(err, db) {
+        if (err) throw err;
+
+        var collection = db.collection('categories');
+
+        collection.insert(
+            item
+            , function(err, col){
+                if (callback) callback(err, item);
+                db.close();
+            });
+    });
+};
+
+
+var getCategories = function getCategories(userId, limit, skip, callback)
+{
+	MongoClient.connect(config.db, function(err, db) {
+        if (err) throw err;
+
+        var collection = db.collection('categories');
+        var cursor = collection.find({ userId : userId }).sort({ lastUsage: -1 }).limit(limit).skip(skip);
+
+        cursor.toArray(function(err, items){
+            callback(err, items);
+            db.close();
+        });
+    });
+};
+
+
 var setup = function setup(callback) {
     MongoClient.connect(config.db, function(err, db) {
         db.createCollection('items', {'capped':true, 'size':10024}, function(err, collection) {
-          callback(err, collection);
-          db.close();
+          db.createCollection('categories', {'capped':true, 'size':2048}, function(err, collection) {
+            callback(err, collection);
+            db.close();
+          });
       });
     });
 }
@@ -81,4 +135,7 @@ var exports = module.exports = {};
     exports.postUser  = postUser;
     exports.getItems  = getItems;
     exports.postItem  = postItem;
+    exports.updateCategory = updateCategory;
+    exports.getCategories  = getCategories;
+    exports.postCategory  = postCategory;
     exports.setup     = setup;
