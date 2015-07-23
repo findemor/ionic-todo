@@ -1,10 +1,12 @@
 <ion-view title="Home">
     <ion-content padding="true" class="has-header">
         <button class="button button-positive button-block " ng-click="createNew()">New item</button>
-        <ion-list>
+        <ion-list can-swipe="true" show-delete="false">
           <ion-item ng-repeat="t in todos">
             <h2>{{t.name}}</h2>
             <p>{{t.category}}</p>
+
+            <ion-option-button class="button-assertive icon ion-trash-a" ng-click="deleteItem('{{ t._id }}')"></ion-option-button>
           </ion-item>
           <ion-item ng-show="todos.length == 0">No Todos Yet</ion-item>
         </ion-list>

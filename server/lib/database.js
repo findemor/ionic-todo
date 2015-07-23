@@ -1,5 +1,6 @@
 var config      = require('./../config.json');
 var mongodb     = require('mongodb');
+var ObjectId    = require('mongodb').ObjectID;
 
 var MongoClient = mongodb.MongoClient;
 
@@ -63,6 +64,22 @@ var postItem = function postItem(item, callback)
     });
 };
 
+
+var deleteItem = function deleteItem(userId, id, callback)
+{
+    MongoClient.connect(config.db, function(err, db) {
+        if (err) throw err;
+
+        var collection = db.collection('items');
+
+        collection.remove(
+            { _id : new ObjectId(id), userId : userId }
+            , function(err, col){
+                if (callback) callback(err, col);
+                db.close();
+            });
+    });
+};
 
 var updateCategory = function updateCategory(userId, categoryId, callback) {
   console.log('updating');
@@ -135,6 +152,7 @@ var exports = module.exports = {};
     exports.postUser  = postUser;
     exports.getItems  = getItems;
     exports.postItem  = postItem;
+    exports.deleteItem = deleteItem;
     exports.updateCategory = updateCategory;
     exports.getCategories  = getCategories;
     exports.postCategory  = postCategory;

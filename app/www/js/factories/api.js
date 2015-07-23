@@ -17,6 +17,9 @@ app.factory('API', ['$http', function($http) {
     },
     getCategories: function(userid) {
       return $http.get(_base + '/api/categories/' + userid);
+    },
+    deleteTodo: function(userid, itemId) {
+      return $http.delete(_base + '/api/todos/' + userid + '/' + itemId);
     }
 
   };

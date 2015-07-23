@@ -10,6 +10,7 @@ router.post('/api/auth/signup', users.signup);
 
 router.get('/api/todos/:_id', todos.getItems);
 router.post('/api/todos/:_id', todos.postItem);
+router.delete('/api/todos/:_id/:_itemId', todos.deleteItem);
 
 router.get('/api/categories/:_id', categories.getCategories);
 router.post('/api/categories/:_id', categories.postCategory);

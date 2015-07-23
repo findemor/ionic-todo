@@ -17,6 +17,21 @@ var getItems = function getItems (req, res) {
   });
 };
 
+var deleteItem = function deleteItem (req, res) {
+  var _id = req.params._id;
+  var _itemId = req.params._itemId;
+  // validate incoming data
+  if (!_id || !_itemId) {
+    r._401(res); // send a 401 Error
+    return;
+  }
+
+  db.deleteItem(_id, _itemId, function(err, items) {
+    r._200(res);
+  });
+};
+
+
 var postItem = function postItem (req, res) {
   var todo = req.body;
   var _id = req.params._id;
@@ -66,7 +81,11 @@ var postItem = function postItem (req, res) {
 
 };
 
+
+
+
 //exports
 var exports = module.exports = {};
     exports.getItems   = getItems;
     exports.postItem   = postItem;
+    exports.deleteItem = deleteItem;
