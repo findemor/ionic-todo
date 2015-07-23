@@ -20,6 +20,15 @@ app.run(function($ionicPlatform, $rootScope, $ionicLoading, $location, $timeout,
     }
   });
 
+  // System events
+  document.addEventListener("resume", resume, false);
+
+  function resume() {
+      $rootScope.$apply(function() {
+          $rootScope.$broadcast('onResumeCordova');
+      });
+  };
+
 
   $rootScope.authktd = false;
 

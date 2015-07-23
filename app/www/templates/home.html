@@ -1,13 +1,44 @@
+
 <ion-view title="Home">
+
+  <!--<ion-nav-bar class="bar-stable">
+      <ion-nav-back-button class="button-icon icon ion-ios7-arrow-back">Back</ion-nav-back-button>
+      <ion-nav-title>Home</ion-nav-title>
+      <ion-nav-buttons side="secondary">
+          <button class="button" ng-click="doSomething()">
+            realod
+          </button>
+        </ion-nav-buttons>
+  </ion-nav-bar>-->
+
+
     <ion-content padding="true" class="has-header">
         <button class="button button-positive button-block " ng-click="createNew()">New item</button>
-        <ion-list can-swipe="true" show-delete="false">
-          <ion-item ng-repeat="t in todos">
-            <h2>{{t.name}}</h2>
-            <p>{{t.category}}</p>
 
-            <ion-option-button class="button-assertive icon ion-trash-a" ng-click="deleteItem('{{ t._id }}')"></ion-option-button>
-          </ion-item>
+        <ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()">
+        </ion-refresher>
+
+        <ion-list can-swipe="true" show-delete="false">
+
+          <div ng-repeat="t in todos | groupby:'category'">
+            <ion-item class="item-divider" ng-show="t.isDivider">
+                {{t.category}}
+            </ion-item>
+            <ion-item>
+              <h2>{{t.name}}</h2>
+              <!--<p>{{t.category}}</p>-->
+
+              <ion-option-button class="button-assertive icon ion-trash-a" ng-click="deleteItem('{{ t._id }}')"></ion-option-button>
+            </ion-item>
+          </div>
+
+
+
+
+
+
+
+
           <ion-item ng-show="todos.length == 0">No Todos Yet</ion-item>
         </ion-list>
     </ion-content>

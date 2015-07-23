@@ -1,4 +1,6 @@
-app.controller('HomeCtrl', ['$rootScope', '$scope', 'SessionFactory', 'API', '$ionicModal', function($rootScope, $scope, sf, api, $ionicModal) {
+app.controller('HomeCtrl',
+  ['$rootScope', '$scope', 'SessionFactory', 'API', '$ionicModal',
+  function($rootScope, $scope, sf, api, $ionicModal) {
 
   $scope.todos = [];
 
@@ -16,9 +18,18 @@ app.controller('HomeCtrl', ['$rootScope', '$scope', 'SessionFactory', 'API', '$i
     });
   });
 
-
+  $rootScope.$on('onResumeCordova', function(event) {
+    $rootScope.$broadcast('load-todos');
+  });
 
   $rootScope.$broadcast('load-todos');
+
+
+  $scope.doRefresh = function() {
+    $rootScope.$broadcast('load-todos');
+    $scope.$broadcast('scroll.refreshComplete');
+    $scope.$apply();
+  };
 
   $rootScope.createNew = function() {
     $scope.modal.show();

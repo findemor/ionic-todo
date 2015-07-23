@@ -37,6 +37,16 @@ preparamos las dependencias
 > adb devices  
 > phonegap run android --device=<device-code-here>  
 
+### configurar path
+
+#### en mac
+
+> export PATH=<path_to_android_sdk>/platform-tools:<path_to_android_sdk>/tools:$PATH
+
+#### en win
+
+* [configurar SO android](http://revolucion.mobi/2014/02/11/guia-instalacion-android-sdk/)
+
 # Enlaces
 
 * [ionic-creator](http://creator.ionic.io)
