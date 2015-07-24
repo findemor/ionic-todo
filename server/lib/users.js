@@ -46,7 +46,7 @@ var signup = function signup (req, res) {
   });
 };
 
-function encrypt(pwd){
+var encrypt = function encrypt(pwd){
   var crypto = require('crypto');
   var hash = crypto.createHash('sha256').update(pwd).digest('base64');
   return hash;
@@ -57,3 +57,4 @@ function encrypt(pwd){
 var exports = module.exports = {};
     exports.login   = login;
     exports.signup  = signup;
+    exports.encrypt = encrypt;

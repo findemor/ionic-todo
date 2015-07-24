@@ -11,7 +11,7 @@ app.controller('LoginCtrl', ['$rootScope', '$location', '$scope', 'API', 'Sessio
   $scope.loginUser = function() {
     $rootScope.showLoading("Authenticating..");
     api.login($scope.login).success(function(data) {
-      sf.createSession(data.data);
+      sf.createSession($scope.login);
       $location.path('/home');
       $rootScope.hideLoading();
     }).error(function(data) {

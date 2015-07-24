@@ -1,6 +1,8 @@
-app.factory('API', ['$http', function($http) {
+app.factory('API', ['$http', 'SessionFactory', function($http, sf) {
 
-  var _base = "http://localhost:3000";
+  var _base = "http://localhost:3000";//"http://<app-name>.herokuapp.com";//
+
+
   var _api = {
 
     login: function(user) {

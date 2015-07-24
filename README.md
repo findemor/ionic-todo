@@ -51,6 +51,10 @@ preparamos las dependencias
 > cordova plugin add cordova-plugin-whitelist  
 [doc](https://github.com/apache/cordova-plugin-whitelist)
 
+# generacion del icono
+
+[icon y splashscreen](http://ionicframework.com/docs/cli/icon-splashscreen.html)
+
 # Enlaces
 
 * [ionic-creator](http://creator.ionic.io)

@@ -12,11 +12,12 @@ app.all('/*', function(req, res, next) {
   // CORS headers
   res.header("Access-Control-Allow-Origin", "*"); // restrict it to the required domain
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
   next();
 });
 
-app.use('/', require('./routes'));
+app.use('/api/auth/',  require('./routes-public'));
+app.use('/api',        require('./routes-priv'));
 
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
