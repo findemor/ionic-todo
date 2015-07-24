@@ -2,10 +2,12 @@ var config      = require('./../config.json');
 var mongodb     = require('mongodb');
 var ObjectId    = require('mongodb').ObjectID;
 
+var connection = process.env.db || config.db;
+
 var MongoClient = mongodb.MongoClient;
 
 var getUser = function getUser(id, callback) {
-    MongoClient.connect(config.db, function(err, db) {
+    MongoClient.connect(connection, function(err, db) {
         if (err) throw err;
 
         var collection = db.collection(config.dbprefix + 'users');
@@ -19,7 +21,7 @@ var getUser = function getUser(id, callback) {
 };
 
 var postUser = function postUser(user, callback) {
-  MongoClient.connect(config.db, function(err, db) {
+  MongoClient.connect(connection, function(err, db) {
       if (err) throw err;
 
       var collection = db.collection(config.dbprefix + 'users');
@@ -35,7 +37,7 @@ var postUser = function postUser(user, callback) {
 
 var getItems = function getItems(userId, limit, skip, callback)
 {
-	MongoClient.connect(config.db, function(err, db) {
+	MongoClient.connect(connection, function(err, db) {
         if (err) throw err;
 
         var collection = db.collection(config.dbprefix + 'items');
@@ -50,7 +52,7 @@ var getItems = function getItems(userId, limit, skip, callback)
 
 var postItem = function postItem(item, callback)
 {
-    MongoClient.connect(config.db, function(err, db) {
+    MongoClient.connect(connection, function(err, db) {
         if (err) throw err;
 
         var collection = db.collection(config.dbprefix + 'items');
@@ -67,7 +69,7 @@ var postItem = function postItem(item, callback)
 
 var deleteItem = function deleteItem(userId, id, callback)
 {
-    MongoClient.connect(config.db, function(err, db) {
+    MongoClient.connect(connection, function(err, db) {
         if (err) throw err;
 
         var collection = db.collection(config.dbprefix + 'items');
@@ -83,7 +85,7 @@ var deleteItem = function deleteItem(userId, id, callback)
 
 var updateCategory = function updateCategory(userId, categoryId, callback) {
   console.log('updating');
-  MongoClient.connect(config.db, function(err, db) {
+  MongoClient.connect(connection, function(err, db) {
       if (err) throw err;
 
       var collection = db.collection(config.dbprefix + 'categories');
@@ -102,7 +104,7 @@ var updateCategory = function updateCategory(userId, categoryId, callback) {
 
 var postCategory = function postCategory(item, callback)
 {
-    MongoClient.connect(config.db, function(err, db) {
+    MongoClient.connect(connection, function(err, db) {
         if (err) throw err;
 
         var collection = db.collection(config.dbprefix + 'categories');
@@ -119,7 +121,7 @@ var postCategory = function postCategory(item, callback)
 
 var getCategories = function getCategories(userId, limit, skip, callback)
 {
-	MongoClient.connect(config.db, function(err, db) {
+	MongoClient.connect(connection, function(err, db) {
         if (err) throw err;
 
         var collection = db.collection(config.dbprefix + 'categories');
@@ -134,7 +136,7 @@ var getCategories = function getCategories(userId, limit, skip, callback)
 
 
 var setup = function setup(callback) {
-    MongoClient.connect(config.db, function(err, db) {
+    MongoClient.connect(connection, function(err, db) {
         db.createCollection(config.dbprefix + 'items', {'capped':true, 'size':10024}, function(err, collection) {
           db.createCollection(config.dbprefix + 'categories', {'capped':true, 'size':2048}, function(err, collection) {
             callback(err, collection);
