@@ -45,7 +45,7 @@ app.controller('HomeCtrl',
     });
   };
 
-  $ionicModal.fromTemplateUrl('/templates/new.html', function(modal) {
+  $ionicModal.fromTemplateUrl('templates/new.html', function(modal) {
     $scope.modal = modal;
   }, {
     animation: 'slide-in-up',

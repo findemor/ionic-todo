@@ -47,6 +47,10 @@ preparamos las dependencias
 
 * [configurar SO android](http://revolucion.mobi/2014/02/11/guia-instalacion-android-sdk/)
 
+## arreglar problema de conectividad
+> cordova plugin add cordova-plugin-whitelist  
+[doc](https://github.com/apache/cordova-plugin-whitelist)
+
 # Enlaces
 
 * [ionic-creator](http://creator.ionic.io)
