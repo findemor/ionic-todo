@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "app para gestionar listas de compra",
   "main": "server.js",
+  "start": "node server",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
