@@ -1,7 +1,8 @@
-app.factory('SessionFactory', ['$window', function($window) {
+app.factory('SessionFactory', ['$window', '$rootScope', function($window, $rootScope) {
 
   var _sessionFactory = {
     createSession: function(user) {
+      $rootScope.authktd = false;
       return $window.localStorage.user = JSON.stringify(user);
     },
     getSession: function(user) {
@@ -9,6 +10,7 @@ app.factory('SessionFactory', ['$window', function($window) {
     },
     deleteSession: function() {
       delete $window.localStorage.user;
+      $rootScope.authktd = false;
       return true;
     },
     checkSession: function() {

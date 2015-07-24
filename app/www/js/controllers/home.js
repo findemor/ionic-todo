@@ -1,6 +1,6 @@
 app.controller('HomeCtrl',
-  ['$rootScope', '$scope', 'SessionFactory', 'API', '$ionicModal',
-  function($rootScope, $scope, sf, api, $ionicModal) {
+  ['$rootScope', '$scope', 'SessionFactory', 'API', '$ionicModal', '$ionicHistory',
+  function($rootScope, $scope, sf, api, $ionicModal, $ionicHistory) {
 
   $scope.todos = [];
 
@@ -51,5 +51,7 @@ app.controller('HomeCtrl',
     animation: 'slide-in-up',
     focusFirstInput: true
   });
+
+  $ionicHistory.clearHistory();
 
 }]);

@@ -1,9 +1,13 @@
-app.controller('SignupCtrl', ['$rootScope', '$location', '$scope', 'API', 'SessionFactory', function($rootScope, $location, $scope, api, sf) {
+app.controller('SignupCtrl', ['$rootScope', '$location', '$scope', 'API', 'SessionFactory', '$ionicHistory', function($rootScope, $location, $scope, api, sf, $ionicHistory) {
 
   $scope.reg = {
     _id: '',
     password: ''
   }
+
+  $ionicHistory.nextViewOptions({
+      disableBack: true
+  });
 
   $scope.registerUser = function() {
     console.log('register');

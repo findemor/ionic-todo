@@ -1,8 +1,12 @@
-app.controller('LoginCtrl', ['$rootScope', '$location', '$scope', 'API', 'SessionFactory', function($rootScope, $location, $scope, api, sf) {
+app.controller('LoginCtrl', ['$rootScope', '$location', '$scope', 'API', 'SessionFactory', '$ionicHistory', function($rootScope, $location, $scope, api, sf, $ionicHistory) {
   $scope.login = {
     _id: '',
     password: ''
   }
+
+  $ionicHistory.nextViewOptions({
+      disableBack: true
+  });
 
   $scope.loginUser = function() {
     $rootScope.showLoading("Authenticating..");

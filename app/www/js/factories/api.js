@@ -1,6 +1,6 @@
 app.factory('API', ['$http', function($http) {
 
-  var _base = "http://todoapp-casa.herokuapp.com";//"http://localhost:3000";
+  var _base = "http://localhost:3000";
   var _api = {
 
     login: function(user) {

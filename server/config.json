@@ -1,4 +1,4 @@
 {
-  "db": "mongodb://todoapp:findemor@ds041032.mongolab.com:41032/opensource",
+  "db": "mongodb://localhost:27017/todoapp",
   "dbprefix": "todoapp_"
 }

@@ -41,7 +41,7 @@ var getItems = function getItems(userId, limit, skip, callback)
         if (err) throw err;
 
         var collection = db.collection(config.dbprefix + 'items');
-        var cursor = collection.find({ userId : userId }).sort({ category: 1, name: 1 }).limit(limit).skip(skip);
+        var cursor = collection.find({ userId : userId, deleted : false }).sort({ category: 1, name: 1 }).limit(limit).skip(skip);
 
         cursor.toArray(function(err, items){
             callback(err, items);
@@ -56,6 +56,8 @@ var postItem = function postItem(item, callback)
         if (err) throw err;
 
         var collection = db.collection(config.dbprefix + 'items');
+
+        item.deleted = false;
 
         collection.insert(
             item
@@ -74,8 +76,9 @@ var deleteItem = function deleteItem(userId, id, callback)
 
         var collection = db.collection(config.dbprefix + 'items');
 
-        collection.remove(
+        collection.update(
             { _id : new ObjectId(id), userId : userId }
+            , { deleted : true }
             , function(err, col){
                 if (callback) callback(err, col);
                 db.close();

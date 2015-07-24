@@ -57,4 +57,16 @@ app.run(function($ionicPlatform, $rootScope, $ionicLoading, $location, $timeout,
     SessionFactory.deleteSession();
     $location.path('/login');
   }
+
+  function openApp() {
+    $rootScope.authktd = SessionFactory.checkSession();
+    if ($rootScope.authktd)
+      $location.path('/home');
+    else
+      $location.path('/login');
+  }
+
+  openApp();
+
+
 });
