@@ -1,3 +1,4 @@
 {
-  "db": "mongodb://localhost:27017/todoapp"
+  "db": "mongodb://localhost:27017/mistica",
+  "dbprefix": "todoapp_"
 }

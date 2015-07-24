@@ -28,7 +28,7 @@ app.controller('NewTodoCtrl', ['$rootScope', '$scope', 'SessionFactory', 'API', 
     user._id,
     {
       name: $scope.todo.name,
-      category: $scope.todo.category._id,
+      category: $scope.todo.category ? $scope.todo.category._id : null,
       categoryNew: $scope.todo.categoryNew
     }).success(function(data) {
 

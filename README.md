@@ -52,4 +52,4 @@ preparamos las dependencias
 * [ionic-creator](http://creator.ionic.io)
 * [tutorial ionic-creator](http://thejackalofjavascript.com/ionic-creator-beta/)
 * [configurar SO android](http://revolucion.mobi/2014/02/11/guia-instalacion-android-sdk/)
-* [emular online](http://emulate.phonegap.com/) 
+* [emular online](http://emulate.phonegap.com/)
