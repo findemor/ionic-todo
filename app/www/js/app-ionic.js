@@ -59,8 +59,7 @@ app.run(function($ionicPlatform, $rootScope, $ionicLoading, $location, $timeout,
   }
 
   function openApp() {
-    $rootScope.authktd = SessionFactory.checkSession();
-    if ($rootScope.authktd)
+    if (SessionFactory.autoLogin())
       $location.path('/home');
     else
       $location.path('/login');

@@ -13,18 +13,15 @@ app.factory('SessionFactory', ['$window', '$rootScope', '$http', 'Base64', funct
 
   var _sessionFactory = {
     createSession: function(user) {
-      $rootScope.authktd = true;
-        $http.defaults.headers.common.Authorization = 'Basic ' + getBasicAuth(user);
-      return $window.localStorage.user = JSON.stringify(user);
+      $window.localStorage.user = JSON.stringify(user)
+      return this.autoLogin();
     },
     getSession: function(user) {
       return JSON.parse($window.localStorage.user);
     },
     deleteSession: function() {
-      $http.defaults.headers.common.Authorization = '';
       delete $window.localStorage.user;
-      $rootScope.authktd = false;
-      return true;
+      return !this.autoLogin();
     },
     checkSession: function() {
       if ($window.localStorage.user) {
@@ -32,6 +29,18 @@ app.factory('SessionFactory', ['$window', '$rootScope', '$http', 'Base64', funct
       } else {
         return false;
       }
+    },
+    autoLogin: function() {
+      if (this.checkSession())
+      {
+        var user = this.getSession();
+        $http.defaults.headers.common.Authorization = 'Basic ' + getBasicAuth(user);
+        $rootScope.authktd = true;
+      } else {
+        $http.defaults.headers.common.Authorization = '';
+        $rootScope.authktd = false;
+      }
+      return $rootScope.authktd;
     }
   };
 

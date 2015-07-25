@@ -1,6 +1,6 @@
 app.controller('HomeCtrl',
-  ['$rootScope', '$scope', 'SessionFactory', 'API', '$ionicModal', '$ionicHistory',
-  function($rootScope, $scope, sf, api, $ionicModal, $ionicHistory) {
+  ['$rootScope', '$scope', 'SessionFactory', 'API', '$ionicModal', '$ionicViewService', '$ionicHistory',
+  function($rootScope, $scope, sf, api, $ionicModal, $ionicViewService, $ionicHistory) {
 
   $scope.todos = [];
 
@@ -52,6 +52,22 @@ app.controller('HomeCtrl',
     focusFirstInput: true
   });
 
+  // not working -> $ionicHistory.clearHistory(); -> https://github.com/driftyco/ionic/issues/724
+  /*$ionicViewService.clearHistory();
   $ionicHistory.clearHistory();
 
+    $ionicHistory.nextViewOptions({
+        disableAnimate: false,
+        disableBack: true
+      });*/
+  /*if ($rootScope && $rootScope.$viewHistory)
+    $rootScope.$viewHistory.backView = null;
+*/
+  /*$rootScope.$viewHistory = {
+    histories: { root: { historyId: 'root', parentHistoryId: null, stack: [], cursor: -1 } },
+    backView: null,
+    forwardView: null,
+    currentView: null,
+    disabledRegistrableTagNames: []
+  };*/
 }]);
